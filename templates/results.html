@@ -4,8 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GlowUp Results</title>
+  <!-- Importing Inter font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
+    /* ---------- GLOBAL STYLES ---------- */
     body {
       background-color: #0e0e0e;
       color: #fff;
@@ -14,6 +16,8 @@
       padding: 40px 20px;
       text-align: center;
     }
+
+    /* ---------- CONTAINER ---------- */
     .result-box {
       max-width: 900px;
       margin: auto;
@@ -22,23 +26,30 @@
       padding: 40px;
       box-shadow: 0 0 10px rgba(255, 95, 109, 0.2);
     }
+
+    /* ---------- HEADINGS ---------- */
     h1 {
       font-size: 36px;
       background: linear-gradient(to right, #ff5f6d, #ffc371);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+
     .section-title {
       font-size: 22px;
       margin: 30px 0 10px;
-      color: #ffb88c;
+      color: #ffb83c;
     }
+
+    /* ---------- CONTENT BOXES ---------- */
     .bio-box, .photo-box {
       background-color: #2b2b2b;
       border-radius: 12px;
       padding: 20px;
       margin-bottom: 20px;
     }
+
+    /* ---------- PHOTO GRID ---------- */
     .photo-grid {
       display: flex;
       justify-content: center;
@@ -46,15 +57,19 @@
       flex-wrap: wrap;
       margin-top: 20px;
     }
+
     .photo-grid img {
       max-width: 220px;
       border-radius: 12px;
       border: 3px solid #ff5f6d;
     }
+
+    /* ---------- SCORE TABLE ---------- */
     .score-table {
       margin-top: 10px;
       text-align: left;
     }
+
     .score-table td {
       padding: 6px 12px;
       font-size: 16px;
@@ -65,24 +80,27 @@
   <div class="result-box">
     <h1>Your GlowUp Results ✨</h1>
 
+    <!-- Bio Transformation Section -->
     <div class="section-title">Bio Transformation</div>
     <div class="bio-box">
       <p>{{ rewritten_bio }}</p>
     </div>
 
+    <!-- Photo Comparison Section -->
     <div class="section-title">Photo Comparison</div>
     <div class="photo-grid">
       <div>
         <img src="#" alt="Before">
-        <div class="score-table"></div>
+        <div class="score-table"> <!-- Score info placeholder --> </div>
       </div>
       <div>
         <img src="#" alt="After">
-        <div class="score-table"></div>
+        <div class="score-table"> <!-- Score info placeholder --> </div>
       </div>
     </div>
   </div>
 
+  <!-- JavaScript Enhancements -->
   <script src="js/results.js"></script>
 </body>
 </html>
