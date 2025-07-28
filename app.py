@@ -84,5 +84,16 @@ def results():
 def waitlist():
     return render_template("waitlist.html")
 
+@app.route('/submit', methods=['POST'])
+def submit():
+    bio = request.form.get('bio', '')
+    tone = request.form.get('tone', 'Professional')
+    file = request.files.get('photo')  # not used yet
+
+    # Placeholder glow-up result
+    rewritten_bio = f"✨ {bio.strip()} (Rewritten in a {tone} tone)"
+
+    return render_template('results.html', rewritten_bio=rewritten_bio)
+
 if __name__ == "__main__":
     app.run(debug=True)
