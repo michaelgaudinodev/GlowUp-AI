@@ -1,10 +1,12 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import openai
 import base64
 from PIL import Image
+import os
 
-app = Flask(__name__)
-openai.api_key = "your_openai_api_key_here"
+app = Flask(__name__, static_folder='static', template_folder='templates')
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # Persona style prompts
 persona_templates = {
@@ -15,11 +17,16 @@ persona_templates = {
     "mysterious": "Rewrite the following bio to be intriguing and mysterious:"
 }
 
+@app.route("/")
+def index():
+    return render_template("index.html")
+
 @app.route("/rewrite", methods=["POST"])
 def rewrite_bio():
     data = request.json
     bio = data.get("bio")
     style = data.get("style", "professional")
+
     if not bio:
         return jsonify({"error": "No bio provided"}), 400
 
@@ -42,12 +49,14 @@ def rewrite_bio():
 def rate_photo():
     data = request.json
     img_data = data.get("image")
+
     if not img_data:
         return jsonify({"error": "No image provided"}), 400
 
     try:
         image_bytes = base64.b64decode(img_data)
-        # Placeholder scoring logic — use a real ML model later
+
+        # Placeholder scoring logic – use a real ML model later
         scores = {
             "attractiveness": 8.1,
             "trustworthiness": 8.4,
