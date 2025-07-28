@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GlowUp.AI Waitlist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #0d0d0d;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .headline {
+      font-size: 40px;
+      font-weight: 800;
+      background: linear-gradient(to right, #ff5f6d, #ffc371);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtext {
+      margin-top: 12px;
+      color: #aaa;
+      font-size: 18px;
+    }
+    form {
+      margin-top: 40px;
+    }
+    input[type="email"] {
+      padding: 12px;
+      width: 280px;
+      border: none;
+      border-radius: 6px;
+      margin-right: 10px;
+    }
+    button {
+      padding: 12px 20px;
+      background-color: #ff5f6d;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .thankyou {
+      margin-top: 30px;
+      display: none;
+      color: #90ee90;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="headline">Get on the GlowUp Waitlist</h1>
+  <p class="subtext">Be first to try the AI that transforms your profile — and get perks for early access.</p>
+
+  <form id="waitlist-form">
+    <input type="email" id="email" placeholder="Enter your email" required>
+    <button type="submit">Join</button>
+  </form>
+
+  <p class="thankyou" id="thankyou-msg">✅ You're on the list! Invite friends for early access perks.</p>
+
+  <script>
+    const form = document.getElementById('waitlist-form');
+    const msg = document.getElementById('thankyou-msg');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      console.log('Collected email:', email); // Replace with backend call
+      form.style.display = 'none';
+      msg.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
