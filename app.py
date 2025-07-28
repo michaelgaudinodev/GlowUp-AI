@@ -4,11 +4,13 @@ import base64
 from PIL import Image
 import os
 
+# Flask setup
 app = Flask(__name__, static_folder='static', template_folder='templates')
 
+# OpenAI key from environment variable
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-# Persona style prompts
+# Prompt templates for different rewrite tones
 persona_templates = {
     "funny": "Rewrite the following dating bio to be funny and charming:",
     "sexy": "Rewrite the following dating bio to be seductive and bold:",
@@ -17,10 +19,12 @@ persona_templates = {
     "mysterious": "Rewrite the following bio to be intriguing and mysterious:"
 }
 
+# Home route
 @app.route("/")
 def index():
     return render_template("index.html")
 
+# Rewrite bio using OpenAI
 @app.route("/rewrite", methods=["POST"])
 def rewrite_bio():
     data = request.json
@@ -42,9 +46,11 @@ def rewrite_bio():
         )
         new_bio = response.choices[0].message["content"].strip()
         return jsonify({"original": bio, "rewritten": new_bio})
+
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+# Rate photo route – placeholder logic
 @app.route("/rate-photo", methods=["POST"])
 def rate_photo():
     data = request.json
@@ -56,44 +62,44 @@ def rate_photo():
     try:
         image_bytes = base64.b64decode(img_data)
 
-        # Placeholder scoring logic – use a real ML model later
+        # Placeholder values – replace with ML model in future
         scores = {
             "attractiveness": 8.1,
             "trustworthiness": 8.4,
             "likability": 8.9
         }
         return jsonify(scores)
+
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-from flask import render_template
-
-@app.route("/")
-def home():
-    return render_template("index.html")
-
+# Frontend route – form page
 @app.route("/upload")
 def upload():
     return render_template("upload.html")
 
+# Frontend route – results page
 @app.route("/results")
 def results():
     return render_template("results.html")
 
+# Frontend route – optional waitlist
 @app.route("/waitlist")
 def waitlist():
     return render_template("waitlist.html")
 
-@app.route('/submit', methods=['POST'])
+# Submit handler for HTML form
+@app.route("/submit", methods=["POST"])
 def submit():
     bio = request.form.get('bio', '')
     tone = request.form.get('tone', 'Professional')
-    file = request.files.get('photo')  # not used yet
+    file = request.files.get('photo')  # currently unused
 
-    # Placeholder glow-up result
+    # Placeholder transformation result
     rewritten_bio = f"✨ {bio.strip()} (Rewritten in a {tone} tone)"
 
     return render_template('results.html', rewritten_bio=rewritten_bio)
 
+# Start app
 if __name__ == "__main__":
     app.run(debug=True)
