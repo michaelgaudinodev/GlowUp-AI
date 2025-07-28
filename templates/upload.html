@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Upload Your GlowUp</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
   <style>
     body {
       background-color: #111;
@@ -13,15 +13,18 @@
       text-align: center;
       padding: 60px 20px;
     }
+
     h1 {
       font-size: 36px;
       background: linear-gradient(to right, #ff5f6d, #ffc371);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+
     form {
       margin-top: 40px;
     }
+
     textarea {
       width: 90%;
       max-width: 500px;
@@ -32,14 +35,18 @@
       border: none;
       font-size: 16px;
     }
-    select, input[type="file"] {
+
+    select,
+    input[type="file"] {
       margin: 10px auto;
       padding: 10px;
       font-size: 16px;
       border-radius: 6px;
+      display: block;
     }
+
     button {
-      padding: 14px 30px;
+      padding: 14px 32px;
       background-color: #ff5f6d;
       border: none;
       border-radius: 8px;
@@ -49,48 +56,56 @@
       cursor: pointer;
       margin-top: 20px;
     }
+
     #preview {
       margin-top: 20px;
       max-width: 300px;
-      border-radius: 10px;
       border: 2px solid #ff5f6d;
+      border-radius: 10px;
+      display: none;
     }
   </style>
 </head>
 <body>
   <h1>Upload Your Profile for a GlowUp ✨</h1>
   <form id="glowup-form">
-    <textarea id="bio" placeholder="Paste your current bio..."></textarea><br>
+    <label for="bio" style="display: none;">Bio</label>
+    <textarea id="bio" placeholder="Paste your current bio..."></textarea>
+
+    <label for="style" style="display: none;">Style</label>
     <select id="style">
       <option value="professional">Professional</option>
       <option value="funny">Funny</option>
       <option value="sexy">Sexy</option>
       <option value="wholesome">Wholesome</option>
       <option value="mysterious">Mysterious</option>
-    </select><br>
-    <input type="file" id="photo-upload" accept="image/*"><br>
-    <img id="preview" src="#" alt="Preview" style="display: none;"/><br>
+    </select>
+
+    <label for="photo-upload" style="display: none;">Upload Image</label>
+    <input type="file" id="photo-upload" accept="image/*" />
+
+    <img id="preview" src="#" alt="Preview" />
+
     <button type="submit">Submit</button>
   </form>
 
-<script src="js/submit.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const uploadInput = document.getElementById("photo-upload");
-    const preview = document.getElementById("preview");
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const uploadInput = document.getElementById("photo-upload");
+      const preview = document.getElementById("preview");
 
-    uploadInput.addEventListener("change", () => {
-      const file = uploadInput.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = e => {
-          preview.src = e.target.result;
-          preview.style.display = "block";
-        };
-        reader.readAsDataURL(file);
-      }
+      uploadInput.addEventListener("change", () => {
+        const file = uploadInput.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = e => {
+            preview.src = e.target.result;
+            preview.style.display = "block";
+          };
+          reader.readAsDataURL(file);
+        }
+      });
     });
-  });
-</script>
+  </script>
 </body>
 </html>
