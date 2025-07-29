@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upload Your GlowUp</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      background: #111;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      text-align: center;
+      padding: 60px 20px;
+    }
+    h1 {
+      font-size: 36px;
+      background: linear-gradient(to right, #ff5f6d, #ffc371);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    form {
+      margin-top: 40px;
+    }
+    textarea {
+      width: 90%;
+      max-width: 500px;
+      height: 100px;
+      margin: 20px auto;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+    }
+    select, input[type="file"] {
+      margin: 20px 10px;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      font-size: 14px;
+    }
+    button {
+      margin-top: 30px;
+      padding: 12px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background: #ff5f6d;
+      color: #fff;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #e14c5a;
+    }
+  </style>
+</head>
+<body>
+  <!-- Page Heading -->
+  <h1>Upload Your GlowUp ✨</h1>
+
+  <!-- Form for submitting user bio and photo -->
+  <form action="/submit" method="POST" enctype="multipart/form-data">
+    
+    <!-- User Bio Textarea -->
+    <textarea name="bio" placeholder="Enter your current bio here..."></textarea>
+
+    <!-- Dropdown Menu for Tone Selection -->
+    <select name="tone">
+      <option value="Professional">Professional</option>
+      <option value="Casual">Casual</option>
+      <option value="Funny">Funny</option>
+      <option value="Confident">Confident</option>
+    </select>
+
+    <!-- Image Upload Field -->
+    <input type="file" name="photo" />
+
+    <!-- Submit Button -->
+    <br />
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>
